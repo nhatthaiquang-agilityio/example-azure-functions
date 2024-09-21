@@ -19,7 +19,6 @@ stages:
     jobs:
       - template: jobs/build-dotnet.yml@CICD
         parameters:
-          SolutionPath: 'ExampleAzureFunctions.sln'
           BuildTargetPath: '**/ExampleAzureFunctions.csproj'
           DotNetVersion: '8.x'
 
