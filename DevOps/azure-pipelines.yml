@@ -31,5 +31,5 @@ stages:
       - template: jobs/deploy-azure-function.yml@CICD
         parameters:
           EnvironmentName: Test
-          AzureSubscription: $(AzureSubscription)
+          AzureSubscription: 'ExampleAzureServiceConnection'
           AzureFunctionName: $(AzureFunctionName)
