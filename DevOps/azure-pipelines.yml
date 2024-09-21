@@ -11,7 +11,7 @@ resources:
       type: github
       ref: main
       name: nhatthaiquang-agilityio/Terraform-CI-CD
-      endpoint: GitHub
+      endpoint: nhatthaiquang-agilityio
 
 stages:
   - stage: build
