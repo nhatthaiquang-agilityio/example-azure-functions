@@ -1,0 +1,35 @@
+name: $(Build.DefinitionName)_$(Date:yyyyMMdd)$(Rev:.r)
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'windows-latest'
+
+resources:
+  repositories:
+    - repository: CICD
+      type: github
+      ref: main
+      name: nhatthaiquang-agilityio/Terraform-CI-CD
+
+stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - template: jobs/build-dotnet.yaml@CICD
+        parameters:
+          SolutionPath: 'ExampleAzureFunctions.sln'
+          BuildTargetPath: '**/ExampleAzureFunctions.csproj'
+          DotNetVersion: '8.x'
+
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: build
+    variables:
+      - group: Test.ExampleAzureFunctions
+    jobs:
+      - template: jobs/deploy-azure-function.yaml@CICD
+        parameters:
+          EnvironmentName: Test
+          AzureSubscription: $(AzureSubscription)
+          AzureFunctionName: $(AzureFunctionName)
