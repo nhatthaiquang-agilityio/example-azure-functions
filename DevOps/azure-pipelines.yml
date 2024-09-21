@@ -15,7 +15,7 @@ resources:
 
 variables:
   - name: AzureSubscription
-    value: 'ExampleAzureServiceConnection'
+    value: 'AzureConnection'
 
 stages:
   - stage: build
