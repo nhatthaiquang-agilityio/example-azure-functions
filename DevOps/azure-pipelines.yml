@@ -23,9 +23,9 @@ stages:
     jobs:
       - template: jobs/build-dotnet.yml@CICD
         parameters:
-          BuildTargetPath: '**/ExampleAzureFunctions/ExampleAzureFunctions.csproj'
+          BuildTargetPath: '**/ExampleAzureFunctions.csproj'
           DotNetVersion: '8.x'
-          SolutionPath: '**/ExampleAzureFunctions/ExampleAzureFunctions.sln'
+          SolutionPath: '**/ExampleAzureFunctions.sln'
 
   - stage: deploy
     displayName: Deploy
