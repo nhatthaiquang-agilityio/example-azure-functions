@@ -27,7 +27,7 @@ stages:
           DotNetVersion: '8.x'
 
   - stage: deploy
-    displayName: Deploy
+    displayName: Deploy Test
     dependsOn: build
     variables:
       - group: Test.ExampleAzureFunctions
