@@ -25,6 +25,7 @@ stages:
         parameters:
           BuildTargetPath: '**/ExampleAzureFunctions.csproj'
           DotNetVersion: '8.x'
+          SolutionPath: '**/ExampleAzureFunctions/ExampleAzureFunctions.sln'
 
   - stage: deploy
     displayName: Deploy
