@@ -8,5 +8,6 @@
             },
             "enableLiveMetricsFilters": true
         }
-    }
+    },
+    "WEBSITE_RUN_FROM_PACKAGE": 1
 }
