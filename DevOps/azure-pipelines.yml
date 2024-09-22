@@ -13,9 +13,9 @@ resources:
       name: nhatthaiquang-agilityio/Terraform-CI-CD
       endpoint: nhatthaiquang-agilityio
 
-# variables:
-#   - name: AzureSubscription
-#     value: 'ExampleAzureServiceConnection'
+variables:
+  - name: AzureSubscription
+    value: 'ExampleAzureServiceConnection'
 
 stages:
   - stage: build
