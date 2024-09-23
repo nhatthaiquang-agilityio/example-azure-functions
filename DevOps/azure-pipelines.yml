@@ -13,10 +13,6 @@ resources:
       name: nhatthaiquang-agilityio/Terraform-CI-CD
       endpoint: nhatthaiquang-agilityio
 
-variables:
-  - name: AzureSubscription
-    value: 'ExampleAzureServiceConnection'
-
 stages:
   - stage: build
     displayName: Build
@@ -35,5 +31,5 @@ stages:
       - template: jobs/deploy-azure-function.yml@CICD
         parameters:
           EnvironmentName: Test
-          AzureSubscription: '$(AzureSubscription)'
+          AzureSubscription: '$(AzureServiceConnection)'
           AzureFunctionName: $(AzureFunctionName)
