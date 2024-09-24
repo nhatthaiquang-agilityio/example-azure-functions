@@ -16,6 +16,8 @@ resources:
 variables:
   - name: TerraformWorkingDirectory
     value: $(System.DefaultWorkingDirectory)/terraform
+  - name: AzureServiceConnection
+    value: 'ExampleAzureServiceConnection'
 
 stages:
   - stage: build
