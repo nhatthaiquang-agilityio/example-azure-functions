@@ -36,11 +36,11 @@ stages:
           TerraformWorkingDirectory: '${{ variables.TerraformWorkingDirectory }}'
           AzureServiceConnectionName: 'ExampleAzureServiceConnection'
           AzureResourceGroupName: 'RG-ExamAzureFunctions'
-          StorageAccountsName: 'testazfuncstorage'
+          StorageAccountsName: 'testwithazfuncstorage'
           AzureContainerName: 'testazfunccontainer'
           AzureRmKeyTFState: 'test.azure-function-infrastructure.tfstate'
           Location: 'SouthEastAsia'
-          FuncStorageAccountName: 'rkfunctionappstorage'
+          FuncStorageAccountName: 'azfunctionstorage'
           AzureFunctionName: '${{ variables.AzureFunctionName }}'
 
   # - stage: deploy
