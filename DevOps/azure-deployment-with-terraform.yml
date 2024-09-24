@@ -19,6 +19,7 @@ variables:
   - name: AzureServiceConnection
     value: 'ExampleAzureServiceConnection'
 
+
 stages:
   - stage: build
     displayName: Build
@@ -32,7 +33,12 @@ stages:
     displayName: Setup Infrastructure with Terraform
     dependsOn: build
     variables:
-      - group: Test.AzureInfrastructure
+      - name: AzureResourceGroupName
+        value: 'test-azure-function-rg'
+      - name: StorageAccountsName
+        value: 'testazurefunctionstorage'
+      - name: AzureContainerName
+        value: 'testazurefunctioncontainer'
     jobs:
       - template: jobs/setup-infrastructure.yml@CICD
         parameters:
@@ -49,7 +55,6 @@ stages:
     displayName: Deploy Test
     dependsOn: SetupInfrastructure
     variables:
-      - group: Test.AzureInfrastructure
       - group: Test.ExampleAzureFunctions
     jobs:
       - template: jobs/deploy-azure-function.yml@CICD
