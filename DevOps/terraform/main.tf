@@ -29,14 +29,13 @@ resource "azurerm_service_plan" "example" {
 }
 
 # Azure Function
-resource "azurerm_function_app" "example" {
+resource "azurerm_windows_function_app" "example" {
   name                = "${var.environment}-${var.azurerm_windows_function_app_name}"
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = var.location
 
-  storage_account_name       = azurerm_storage_account.example.name
-  storage_account_access_key = azurerm_storage_account.example.primary_access_key
-  app_service_plan_id            = azurerm_service_plan.example.id
+  storage_account_name = azurerm_storage_account.example.name
+  service_plan_id      = azurerm_service_plan.example.id
 
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME" = "dotnet-isolated",
