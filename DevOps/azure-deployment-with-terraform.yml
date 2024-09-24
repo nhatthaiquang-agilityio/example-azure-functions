@@ -15,10 +15,9 @@ resources:
 
 variables:
   - name: TerraformWorkingDirectory
-    value: $(System.DefaultWorkingDirectory)/terraform
+    value: $(System.DefaultWorkingDirectory)/DevOps/terraform
   - name: AzureServiceConnection
     value: 'ExampleAzureServiceConnection'
-
 
 stages:
   - stage: build
@@ -32,23 +31,16 @@ stages:
   - stage: SetupInfrastructure
     displayName: Setup Infrastructure with Terraform
     dependsOn: build
-    variables:
-      - name: AzureResourceGroupName
-        value: 'test-azure-function-rg'
-      - name: StorageAccountsName
-        value: 'testazurefunctionstorage'
-      - name: AzureContainerName
-        value: 'testazurefunctioncontainer'
     jobs:
       - template: jobs/setup-infrastructure.yml@CICD
         parameters:
           EnvironmentName: Test
           TerraformWorkingDirectory: '${{ variables.TerraformWorkingDirectory }}'
           AzureServiceConnectionName: '${{ variables.AzureServiceConnection }}'
-          AzureResourceGroupName: '${{ variables.AzureResourceGroupName }}'
-          StorageAccountsName: '${{ variables.StorageAccountsName }}'
-          AzureContainerName: '${{ variables.AzureContainerName }}'
-          VarFilePath: 'terraform/Test/test.tfvars'
+          AzureResourceGroupName: 'test-azure-function-rg'
+          StorageAccountsName: 'testazurefunctionstorage'
+          AzureContainerName: 'testazurefunctioncontainer'
+          VarFilePath: 'DevOps/terraform/Test/test.tfvars'
           AzureRmKeyTFState: 'test.azure-function-infrastructure.tfstate'
 
   - stage: deploy
