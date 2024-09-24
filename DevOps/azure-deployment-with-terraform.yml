@@ -16,8 +16,6 @@ resources:
 variables:
   - name: TerraformWorkingDirectory
     value: $(System.DefaultWorkingDirectory)/DevOps/terraform
-  - name: AzureServiceConnection
-    value: 'ExampleAzureServiceConnection'
 
 stages:
   - stage: build
@@ -36,21 +34,26 @@ stages:
         parameters:
           EnvironmentName: Test
           TerraformWorkingDirectory: '${{ variables.TerraformWorkingDirectory }}'
-          AzureServiceConnectionName: '${{ variables.AzureServiceConnection }}'
+          AzureServiceConnectionName: 'ExampleAzureServiceConnection'
           AzureResourceGroupName: 'test-azure-function-rg'
-          StorageAccountsName: 'testazurefunctionstorage'
-          AzureContainerName: 'testazurefunctioncontainer'
-          VarFilePath: 'DevOps/terraform/Test/test.tfvars'
+          StorageAccountsName: 'test-example-azure-function-storage'
+          AzureContainerName: 'testazfunccontainer'
           AzureRmKeyTFState: 'test.azure-function-infrastructure.tfstate'
+          Location: 'SouthEastAsia'
+          FuncStorageAccountName: 'rkfunctionappstorage'
+          AzureFunctionName: '${{ variables.AzureFunctionName }}'
 
   - stage: deploy
     displayName: Deploy Test
     dependsOn: SetupInfrastructure
     variables:
       - group: Test.ExampleAzureFunctions
+      - name: AzureFunctionName
+        value: 'example-azure-function'
     jobs:
       - template: jobs/deploy-azure-function.yml@CICD
         parameters:
           EnvironmentName: Test
           AzureSubscription: '${{ variables.AzureServiceConnection }}'
+          # actually, this is [environment]-[azure-function-name]
           AzureFunctionName: '${{ variables.AzureFunctionName }}'

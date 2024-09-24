@@ -1,5 +1,0 @@
-environment = "Stage"
-resource_group_name=""
-location = "SouthEast Asia"
-functionapp_storage_account_name = "example-azure-function-storage"
-azurerm_windows_function_app_name = "example-azure-function"
