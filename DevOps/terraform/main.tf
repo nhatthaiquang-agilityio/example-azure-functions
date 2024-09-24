@@ -43,6 +43,5 @@ resource "azurerm_windows_function_app" "example" {
   }
 
   site_config {
-    use_32_bit_worker_process = false
   }
 }
