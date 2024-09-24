@@ -15,7 +15,7 @@ resource "azurerm_application_insights" "application_insights" {
   name                = "${var.environment}-application-insights"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
-  application_type    = "C#"
+  application_type    = "web"
 }
 
 # Azure Service Plan
