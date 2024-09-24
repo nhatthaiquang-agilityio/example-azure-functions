@@ -18,25 +18,27 @@ variables:
     value: $(System.DefaultWorkingDirectory)/DevOps/terraform
   - name: AzureFunctionName
     value: 'example-azure-function'
+  - name: AzureServiceConnection
+    value: 'ExampleAzureServiceConnection'
 
 stages:
-  # - stage: build
-  #   displayName: Build
-  #   jobs:
-  #     - template: jobs/build-dotnet.yml@CICD
-  #       parameters:
-  #         BuildTargetPath: '**/ExampleAzureFunctions.csproj'
-  #         DotNetVersion: '8.x'
+  - stage: build
+    displayName: Build
+    jobs:
+      - template: jobs/build-dotnet.yml@CICD
+        parameters:
+          BuildTargetPath: '**/ExampleAzureFunctions.csproj'
+          DotNetVersion: '8.x'
 
   - stage: SetupInfrastructure
     displayName: Setup Infrastructure with Terraform
-    # dependsOn: build
+    dependsOn: build
     jobs:
       - template: jobs/setup-infrastructure.yml@CICD
         parameters:
           EnvironmentName: Test
           TerraformWorkingDirectory: '${{ variables.TerraformWorkingDirectory }}'
-          AzureServiceConnectionName: 'ExampleAzureServiceConnection'
+          AzureServiceConnectionName: '${{ variables.AzureServiceConnection }}'
           AzureResourceGroupName: 'RG-ExamAzureFunctions'
           StorageAccountsName: 'testwithazfuncstorage'
           AzureContainerName: 'testazfunccontainer'
@@ -45,17 +47,12 @@ stages:
           FuncStorageAccountName: 'teststorageazfunc'
           AzureFunctionName: '${{ variables.AzureFunctionName }}'
 
-  # - stage: deploy
-  #   displayName: Deploy Test
-  #   dependsOn: SetupInfrastructure
-  #   variables:
-  #     - group: Test.ExampleAzureFunctions
-  #     - name: AzureFunctionName
-  #       value: 'example-azure-function'
-  #   jobs:
-  #     - template: jobs/deploy-azure-function.yml@CICD
-  #       parameters:
-  #         EnvironmentName: Test
-  #         AzureSubscription: '${{ variables.AzureServiceConnection }}'
-  #         # actually, this is [environment]-[azure-function-name]
-  #         AzureFunctionName: '${{ variables.AzureFunctionName }}'
+  - stage: deploy
+    displayName: Deploy Test
+    dependsOn: SetupInfrastructure
+    jobs:
+      - template: jobs/deploy-azure-function.yml@CICD
+        parameters:
+          EnvironmentName: Test
+          AzureSubscription: '${{ variables.AzureServiceConnection }}'
+          AzureFunctionName: '${{ variables.AzureFunctionName }}'
