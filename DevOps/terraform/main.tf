@@ -14,7 +14,7 @@ resource "azurerm_storage_account" "example" {
 resource "azurerm_application_insights" "application_insights" {
   name                = "${var.environment}-application-insights"
   location            = var.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = data.azurerm_resource_group.rg.name
   application_type    = "C#"
 }
 
@@ -23,8 +23,6 @@ resource "azurerm_service_plan" "example" {
   name                = "rk-app-service-plan01"
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = var.location
-  kind                = "FunctionApp"
-  reserved = false
   os_type             = "Windows"
   # Windows Consumption
   sku_name            = "Y1"
