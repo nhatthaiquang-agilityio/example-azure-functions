@@ -14,7 +14,7 @@ resource "azurerm_storage_account" "example" {
 resource "azurerm_application_insights" "application_insights" {
   name                = "${var.environment}-application-insights"
   location            = var.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  resource_group_name = azurerm_resource_group.rg.name
   application_type    = "C#"
 }
 
@@ -25,11 +25,9 @@ resource "azurerm_service_plan" "example" {
   location            = var.location
   kind                = "FunctionApp"
   reserved = false
-  sku {
-    # Windows Consumption
-    tier = "Dynamic"
-    size = "Y1"
-  }
+  os_type             = "Windows"
+  # Windows Consumption
+  sku_name            = "Y1"
 }
 
 # Azure Function
