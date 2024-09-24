@@ -4,7 +4,7 @@ data "azurerm_resource_group" "rg" {
 
 # Azure Storage
 resource "azurerm_storage_account" "example" {
-  name                     = "${var.environment}-${var.functionapp_storage_account_name}"
+  name                     = "${var.functionapp_storage_account_name}"
   resource_group_name      = data.azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "example" {
 }
 
 resource "azurerm_application_insights" "application_insights" {
-  name                = "${var.environment}-application-insights"
+  name                = "application-insights"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name
   application_type    = "web"
@@ -30,7 +30,7 @@ resource "azurerm_service_plan" "example" {
 
 # Azure Function
 resource "azurerm_windows_function_app" "example" {
-  name                = "${var.environment}-${var.azurerm_windows_function_app_name}"
+  name                = "${var.azurerm_windows_function_app_name}"
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = var.location
 
