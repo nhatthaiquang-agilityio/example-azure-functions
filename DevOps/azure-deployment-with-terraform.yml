@@ -42,7 +42,7 @@ stages:
           AzureContainerName: 'testazfunccontainer'
           AzureRmKeyTFState: 'test.azure-function-infrastructure.tfstate'
           Location: 'SouthEastAsia'
-          FuncStorageAccountName: 'testwithazfuncstorage'
+          FuncStorageAccountName: 'testazfuncstorage'
           AzureFunctionName: '${{ variables.AzureFunctionName }}'
 
   # - stage: deploy
