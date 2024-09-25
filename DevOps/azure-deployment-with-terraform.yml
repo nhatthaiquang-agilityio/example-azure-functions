@@ -31,7 +31,7 @@ stages:
           DotNetVersion: '8.x'
 
   - stage: SetupInfrastructure
-    displayName: Setup Infrastructure with Terraform
+    displayName: Test - Setup Infrastructure
     dependsOn: build
     jobs:
       - template: jobs/setup-infrastructure.yml@CICD
