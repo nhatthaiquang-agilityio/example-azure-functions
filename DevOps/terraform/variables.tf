@@ -12,7 +12,7 @@ variable "location" {
 
 variable "functionapp_storage_account_name" {
   type = string
-  default = "example-azure-function-storage"
+  default = ""
 }
 
 variable "azurerm_windows_function_app_name" {
