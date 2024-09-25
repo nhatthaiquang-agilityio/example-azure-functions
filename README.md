@@ -1,37 +1,39 @@
 # Example Azure Functions
-## Create an Azure Function example and deploy with package zip via Azure DevOps
-- Create manual Azure Functions in Azure Portal
-- Deploy package zip via Azure DevOps
+    - Deploy Azure Function via Azure DevOps
 
-## Create Azure Functions and setup infrastructure with Terraform via Azure DevOps
-- Create manual Resource Group, Storage Name and Container Name
-- Setup Infrastructure Azure Function with Terraform
-- Deploy package zip
-
-## Create Azure DevOps
+## Requisites
 - Create an account in Azure DevOps
 - Create Parallel Jobs for building and deployment app (Microsoft-Hosted)
 - Link GitHub repo with Azure DevOps (GitHub Connections)
 - Create a Service Connection between Azure DevOps and Azure Portal for Deployment
 ![Service Connection](./images/Service-Connection.png)
 
-### Create Azure Pipeline and deploy with zip package
-+ ![Run Pipeline](./Images/Pipeline.png)
+## Create an Azure Function example and deploy with package zip via Azure DevOps
+- Create manual Azure Functions in Azure Portal
+- Deploy package zip via Azure DevOps
 
 ### Check Azure Function in Azure Portal
++ Run Pipeline
+
+![Run Pipeline](./Images/Pipeline.png)
+
 + Home Page with Environment setting (AzureWebJobsDisableHomepage=false)
 ![Home Page Azure Function](./Images/HomePage-Azure.png)
+
 + Show Azure Functions
 ![Azure Function](./Images/Show-Functions.png)
 
 ### Test Azure Function
 ![Http Trigger Azure Function](./Images/Http-Trigger.png)
 
-## Deploy Azure Function with Terraform
-- Create ResourceGroup
-- Create Storage Account & Container
+
+## Create Azure Functions and setup infrastructure with Terraform via Azure DevOps
+- Create manual ResourceGroup
+- Create manual Storage Account Name & Container Name
     + Save terraform state file
 - Run azure-deployment-with-terraform.yml
+    + Setup Infrastructure Azure Function with Terraform
+    + Deploy package zip
 
 ### Check in Azure Portal
 + Azure Deployment with Terraform
