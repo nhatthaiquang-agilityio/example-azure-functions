@@ -21,6 +21,7 @@
 ![Home Page Azure Function](./Images/HomePage-Azure.png)
 
 + Show Azure Functions
+
 ![Azure Function](./Images/Show-Functions.png)
 
 ### Test Azure Function
