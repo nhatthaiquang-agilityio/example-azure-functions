@@ -19,7 +19,7 @@ variables:
   - name: AzureFunctionName
     value: 'example-azure-function'
   - name: AzureServiceConnection
-    value: 'ExampleAzureServiceConnection'
+    value: 'AzServicePrincipal'
 
 stages:
   - stage: build
